@@ -85,10 +85,13 @@ message("\tTests: ${BUILD_TESTS}")
 ########################################################################################################################
 ## Configure target DLL
 ########################################################################################################################
-find_package(CommonLibSSE CONFIG REQUIRED)
+find_package(CommonLibSSE REQUIRED)
+target_link_libraries(${PROJECT_NAME} PUBLIC CommonLibSSE::CommonLibSSE)
+add_commonlibsse_plugin(${PROJECT_NAME}
+    SOURCES ${headers} ${sources})
+
 find_library(Detours_LIBRARIES NAMES detours.lib)
 
-add_commonlibsse_plugin(${PROJECT_NAME} SOURCES ${headers} ${sources})
 add_library("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS "${PROJECT_NAME}")
 
 target_include_directories(${PROJECT_NAME}
