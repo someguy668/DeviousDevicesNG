@@ -85,8 +85,8 @@ message("\tTests: ${BUILD_TESTS}")
 ########################################################################################################################
 ## Configure target DLL
 ########################################################################################################################
+add_subdirectory("./lib/commonlibsse-ng")
 find_package(CommonLibSSE REQUIRED)
-target_link_libraries(${PROJECT_NAME} PUBLIC CommonLibSSE::CommonLibSSE)
 add_commonlibsse_plugin(${PROJECT_NAME}
     SOURCES ${headers} ${sources})
 
