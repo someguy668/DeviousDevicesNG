@@ -85,13 +85,21 @@ message("\tTests: ${BUILD_TESTS}")
 ########################################################################################################################
 ## Configure target DLL
 ########################################################################################################################
-add_subdirectory("./lib/commonlibsse-ng")
-find_package(CommonLibSSE REQUIRED)
-add_commonlibsse_plugin(${PROJECT_NAME}
-    SOURCES ${headers} ${sources})
+set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(SKSE_SUPPORT_XBYAK ON CACHE BOOL "" FORCE)
+set(COMMONLIB_ENABLE_IPO OFF CACHE BOOL "" FORCE)
+include(FetchContent)
+FetchContent_Declare(
+        CommonLibSSE_NG
+        GIT_REPOSITORY https://github.com/alandtse/CommonLibSSE-NG.git
+        GIT_TAG 699eeffe8e8e77fceaf96dddd2959bf07d05961a)
+FetchContent_MakeAvailable(CommonLibSSE_NG)
+include("${commonlibsse_ng_SOURCE_DIR}/cmake/CommonLibSSE.cmake")
+
 
 find_library(Detours_LIBRARIES NAMES detours.lib)
 
+add_commonlibsse_plugin(${PROJECT_NAME} SOURCES ${headers} ${sources})
 add_library("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS "${PROJECT_NAME}")
 
 target_include_directories(${PROJECT_NAME}
@@ -119,8 +127,6 @@ install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include"
 install(TARGETS ${PROJECT_NAME}
         DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 
-
-set(SKSE_USE_XBYAK ON)
 ########################################################################################################################
 ## Configure unit tests
 ########################################################################################################################
