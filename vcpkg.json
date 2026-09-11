@@ -8,11 +8,20 @@
         "plugin": {
             "description": "Build the SKSE plugin.",
             "dependencies": [
-                "detours",
                 "boost-algorithm",
-                "boost-math",
                 "boost-lexical-cast",
-                "boost-property-tree"
+                "boost-math",
+                "boost-property-tree",
+                "detours",
+                "directxmath",
+                "directxtk",
+                "fmt",
+                "nlohmann-json",
+                "rapidcsv",
+                "simpleini",
+                "spdlog",
+                "toml11",
+                "xbyak"
             ]
         },
         "tests": {
@@ -29,25 +38,7 @@
             ]
         }
     },
-    "overrides": [
-        {
-            "name": "boost-algorithm",
-            "version": "1.86.0"
-        },
-        {
-            "name": "boost-math",
-            "version": "1.86.0"
-        },
-        {
-            "name": "boost-lexical-cast",
-            "version": "1.86.0"
-        },
-        {
-            "name": "boost-property-tree",
-            "version": "1.86.0"
-        }
-    ],
-    "builtin-baseline": "8cbab05e499a6fc3893c9a6125d51b6d7d877dcc",
+    "builtin-baseline": "ee12231b20c95013c6638d845d04c91559a1d1ff",
     "default-features": [
         "plugin",
         "tests"
