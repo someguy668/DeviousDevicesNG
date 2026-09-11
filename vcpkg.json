@@ -8,7 +8,7 @@
         "plugin": {
             "description": "Build the SKSE plugin.",
             "dependencies": [
-                "commonlibsse-ng",
+                "commonlibsse-po3-ae",
                 "detours",
                 "boost-algorithm",
                 "boost-math",
